@@ -1,0 +1,72 @@
+{
+  "as_of": "2026-11-10T09:00:00+03:00",
+  "command": "audit",
+  "evidence_basis": "supplied_local_snapshot_and_receipt_fields_only",
+  "input_sha256": "34b3997a05aeb6dc947226150a292250640af8afc66f8e807a8581e7882396d6",
+  "ok": true,
+  "rows": [
+    {
+      "classification": "consistent",
+      "deal_id": "DEMO-DEAL-01",
+      "findings": [],
+      "handoff_id": "H01",
+      "packet_sha256": "41e59b9a751748e0afce785199532079d554e303ea4cc1f08bbd74b2237477ff"
+    },
+    {
+      "classification": "needs_review",
+      "deal_id": "DEMO-DEAL-02",
+      "findings": [
+        "ACK_MISSING"
+      ],
+      "handoff_id": "H02",
+      "packet_sha256": "5b1f3265b0043e07c293a1624ed76a002f1f95c93a93a53db6782980d910c315"
+    },
+    {
+      "classification": "needs_review",
+      "deal_id": "DEMO-DEAL-03",
+      "findings": [
+        "ACK_HASH_MISMATCH"
+      ],
+      "handoff_id": "H03",
+      "packet_sha256": "5228cc60c143be491ae4824200c899a6f87e233a6cdec1370f54b534f66366b8"
+    },
+    {
+      "classification": "needs_review",
+      "deal_id": "DEMO-DEAL-04",
+      "findings": [
+        "OWNER_MISMATCH"
+      ],
+      "handoff_id": "H04",
+      "packet_sha256": "db3505d612eae6a3a7e6969f261c3d009ed0bcf0d250f0e85cfe600f984b5052"
+    },
+    {
+      "classification": "needs_review",
+      "deal_id": "DEMO-DEAL-05",
+      "findings": [
+        "NEXT_STEP_OVERDUE"
+      ],
+      "handoff_id": "H05",
+      "packet_sha256": "e36a915d9bece4a5b7ce76b833a58a5685b94efd49650a11711429cb3229d03c"
+    },
+    {
+      "classification": "needs_review",
+      "deal_id": "DEMO-DEAL-06",
+      "findings": [
+        "ACK_REJECTED"
+      ],
+      "handoff_id": "H06",
+      "packet_sha256": "7d89ad6be55b6937413a0a72a4605a171add777b478a306a135fc0d7b6085ea8"
+    }
+  ],
+  "snapshot": {
+    "captured_at": "2026-11-10T08:45:00+03:00",
+    "complete": true,
+    "max_age_hours": 24
+  },
+  "summary": {
+    "consistent": 1,
+    "handoffs": 6,
+    "needs_review": 5
+  },
+  "version": "0.1.0"
+}

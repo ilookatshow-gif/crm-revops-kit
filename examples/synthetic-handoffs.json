@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-11-10T09:00:00+03:00",
+  "max_snapshot_age_hours": 24,
+  "snapshot": {
+    "captured_at": "2026-11-10T08:45:00+03:00",
+    "complete": true,
+    "deals": [
+      {
+        "deal_id": "DEMO-DEAL-01",
+        "owner_id": "sales-demo",
+        "stage": "qualified"
+      },
+      {
+        "deal_id": "DEMO-DEAL-02",
+        "owner_id": "sales-demo",
+        "stage": "qualified"
+      },
+      {
+        "deal_id": "DEMO-DEAL-03",
+        "owner_id": "sales-demo",
+        "stage": "qualified"
+      },
+      {
+        "deal_id": "DEMO-DEAL-04",
+        "owner_id": "sales-other-demo",
+        "stage": "qualified"
+      },
+      {
+        "deal_id": "DEMO-DEAL-05",
+        "owner_id": "sales-demo",
+        "stage": "qualified"
+      },
+      {
+        "deal_id": "DEMO-DEAL-06",
+        "owner_id": "sales-demo",
+        "stage": "qualified"
+      }
+    ]
+  },
+  "handoffs": [
+    {
+      "id": "H01",
+      "deal_id": "DEMO-DEAL-01",
+      "from_owner_id": "marketing-demo",
+      "to_owner_id": "sales-demo",
+      "target_stage": "qualified",
+      "prepared_at": "2026-11-10T08:00:00+03:00",
+      "next_step": {
+        "description": "Проверить учебный бриф и согласовать следующий шаг",
+        "due_at": "2026-11-11T10:00:00+03:00"
+      },
+      "evidence": [
+        {
+          "id": "E01",
+          "source_ref": "demo://invented/handoff-01/brief",
+          "summary": "Вымышленный бриф для проверки передачи сделки; не клиентские данные."
+        }
+      ]
+    },
+    {
+      "id": "H02",
+      "deal_id": "DEMO-DEAL-02",
+      "from_owner_id": "marketing-demo",
+      "to_owner_id": "sales-demo",
+      "target_stage": "qualified",
+      "prepared_at": "2026-11-10T08:00:00+03:00",
+      "next_step": {
+        "description": "Проверить учебный бриф и согласовать следующий шаг",
+        "due_at": "2026-11-11T10:00:00+03:00"
+      },
+      "evidence": [
+        {
+          "id": "E01",
+          "source_ref": "demo://invented/handoff-02/brief",
+          "summary": "Вымышленный бриф для проверки передачи сделки; не клиентские данные."
+        }
+      ]
+    },
+    {
+      "id": "H03",
+      "deal_id": "DEMO-DEAL-03",
+      "from_owner_id": "marketing-demo",
+      "to_owner_id": "sales-demo",
+      "target_stage": "qualified",
+      "prepared_at": "2026-11-10T08:00:00+03:00",
+      "next_step": {
+        "description": "Проверить учебный бриф и согласовать следующий шаг",
+        "due_at": "2026-11-11T10:00:00+03:00"
+      },
+      "evidence": [
+        {
+          "id": "E01",
+          "source_ref": "demo://invented/handoff-03/brief",
+          "summary": "Изменённая версия вымышленного брифа после принятия прежней версии."
+        }
+      ]
+    },
+    {
+      "id": "H04",
+      "deal_id": "DEMO-DEAL-04",
+      "from_owner_id": "marketing-demo",
+      "to_owner_id": "sales-demo",
+      "target_stage": "qualified",
+      "prepared_at": "2026-11-10T08:00:00+03:00",
+      "next_step": {
+        "description": "Проверить учебный бриф и согласовать следующий шаг",
+        "due_at": "2026-11-11T10:00:00+03:00"
+      },
+      "evidence": [
+        {
+          "id": "E01",
+          "source_ref": "demo://invented/handoff-04/brief",
+          "summary": "Вымышленный бриф для проверки передачи сделки; не клиентские данные."
+        }
+      ]
+    },
+    {
+      "id": "H05",
+      "deal_id": "DEMO-DEAL-05",
+      "from_owner_id": "marketing-demo",
+      "to_owner_id": "sales-demo",
+      "target_stage": "qualified",
+      "prepared_at": "2026-11-10T08:00:00+03:00",
+      "next_step": {
+        "description": "Проверить учебный бриф и согласовать следующий шаг",
+        "due_at": "2026-11-10T08:30:00+03:00"
+      },
+      "evidence": [
+        {
+          "id": "E01",
+          "source_ref": "demo://invented/handoff-05/brief",
+          "summary": "Вымышленный бриф для проверки передачи сделки; не клиентские данные."
+        }
+      ]
+    },
+    {
+      "id": "H06",
+      "deal_id": "DEMO-DEAL-06",
+      "from_owner_id": "marketing-demo",
+      "to_owner_id": "sales-demo",
+      "target_stage": "qualified",
+      "prepared_at": "2026-11-10T08:00:00+03:00",
+      "next_step": {
+        "description": "Проверить учебный бриф и согласовать следующий шаг",
+        "due_at": "2026-11-11T10:00:00+03:00"
+      },
+      "evidence": [
+        {
+          "id": "E01",
+          "source_ref": "demo://invented/handoff-06/brief",
+          "summary": "Вымышленный бриф для проверки передачи сделки; не клиентские данные."
+        }
+      ]
+    }
+  ],
+  "acknowledgements": [
+    {
+      "handoff_id": "H01",
+      "accepted_by": "sales-demo",
+      "accepted_at": "2026-11-10T08:15:00+03:00",
+      "decision": "accepted",
+      "packet_sha256": "41e59b9a751748e0afce785199532079d554e303ea4cc1f08bbd74b2237477ff",
+      "note": ""
+    },
+    {
+      "handoff_id": "H03",
+      "accepted_by": "sales-demo",
+      "accepted_at": "2026-11-10T08:15:00+03:00",
+      "decision": "accepted",
+      "packet_sha256": "267dcc99cb8ea291f8b6cdb9135b51bf23072e0e73afe0553cb8a088d1445ab4",
+      "note": ""
+    },
+    {
+      "handoff_id": "H04",
+      "accepted_by": "sales-demo",
+      "accepted_at": "2026-11-10T08:15:00+03:00",
+      "decision": "accepted",
+      "packet_sha256": "db3505d612eae6a3a7e6969f261c3d009ed0bcf0d250f0e85cfe600f984b5052",
+      "note": ""
+    },
+    {
+      "handoff_id": "H05",
+      "accepted_by": "sales-demo",
+      "accepted_at": "2026-11-10T08:15:00+03:00",
+      "decision": "accepted",
+      "packet_sha256": "e36a915d9bece4a5b7ce76b833a58a5685b94efd49650a11711429cb3229d03c",
+      "note": ""
+    },
+    {
+      "handoff_id": "H06",
+      "accepted_by": "sales-demo",
+      "accepted_at": "2026-11-10T08:15:00+03:00",
+      "decision": "rejected",
+      "packet_sha256": "7d89ad6be55b6937413a0a72a4605a171add777b478a306a135fc0d7b6085ea8",
+      "note": "Учебный отказ: требуется уточнить бриф."
+    }
+  ]
+}
