@@ -293,6 +293,18 @@ def output_bytes(value):
     return (json.dumps(value, sort_keys=True, ensure_ascii=True, indent=2, allow_nan=False) + "\n").encode("ascii")
 
 
+def emit(value):
+    """Write the same LF-delimited bytes as report files on every native host."""
+    data = output_bytes(value)
+    binary = getattr(sys.stdout, "buffer", None)
+    if binary is None:
+        # Embedded callers may replace stdout with a text-only StringIO.
+        sys.stdout.write(data.decode("ascii"))
+    else:
+        binary.write(data)
+        binary.flush()
+
+
 def write_output(path, value, replace=False, input_path=None):
     """Atomically publish a bounded report; never overwrite an input or symlink."""
     target = Path(os.path.abspath(str(path)))
@@ -400,12 +412,12 @@ def main(argv=None):
                         raise InputError("CLI_USAGE")
                     if args.output:
                         write_output(args.output, result, args.replace, path)
-        sys.stdout.write(output_bytes(result).decode("ascii"))
+        emit(result)
         return status
     except (InputError, OSError, ValueError, TypeError, RecursionError, OverflowError) as error:
         code = str(error) if isinstance(error, InputError) else "OPERATION_REFUSED"
-        sys.stdout.write(output_bytes({"ok": False, "error": {"code": code,
-            "message": "Input, command or output was refused. Check schema/help; supplied payloads are not included in errors."}}).decode("ascii"))
+        emit({"ok": False, "error": {"code": code,
+            "message": "Input, command or output was refused. Check schema/help; supplied payloads are not included in errors."}})
         return 2
 
 

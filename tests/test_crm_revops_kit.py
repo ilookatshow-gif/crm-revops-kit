@@ -1,6 +1,7 @@
 import copy
 import hashlib
 import importlib.util
+import io
 import json
 import os
 from pathlib import Path
@@ -8,6 +9,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location("crm_revops_kit", ROOT / "crm_revops_kit.py")
@@ -310,6 +312,31 @@ class CommandTests(unittest.TestCase):
             self.assertEqual(output.read_text(encoding="utf-8"),"preserve")
             replaced=cli("audit",path,"--output",output,"--replace")
             self.assertEqual(replaced.returncode,0); self.assertEqual(replaced.stdout,output.read_bytes())
+
+    def test_crlf_text_stdout_keeps_exact_report_bytes(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory).resolve();source=root/"input.json";source.write_bytes(raw(good()))
+            output=root/"report.json";buffer=io.BytesIO()
+            stream=io.TextIOWrapper(buffer,encoding="cp1252",newline="\r\n")
+            with patch.object(kit.sys,"stdout",stream):
+                result=kit.main(["--json","audit",str(source),"--output",str(output)])
+            stream.flush(); actual=buffer.getvalue()
+            self.assertEqual(result,0)
+            self.assertEqual(actual,output.read_bytes())
+            self.assertNotIn(b"\r",actual)
+            stream.detach()
+
+    def test_crlf_error_json_and_text_only_capture_use_same_encoder(self):
+        buffer=io.BytesIO();stream=io.TextIOWrapper(buffer,encoding="cp1252",newline="\r\n")
+        with patch.object(kit.sys,"stdout",stream):
+            result=kit.main(["--json","unknown-command"])
+        stream.flush();actual=buffer.getvalue();stream.detach()
+        self.assertEqual(result,2);self.assertNotIn(b"\r",actual)
+        self.assertEqual(actual,kit.output_bytes(json.loads(actual)))
+        capture=io.StringIO()
+        with patch.object(kit.sys,"stdout",capture):
+            kit.emit({"ok":True,"text":"Русский пример"})
+        self.assertEqual(capture.getvalue().encode("ascii"),kit.output_bytes({"ok":True,"text":"Русский пример"}))
 
     def test_invalid_input_never_creates_report(self):
         with tempfile.TemporaryDirectory() as directory:
